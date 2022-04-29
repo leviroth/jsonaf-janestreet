@@ -32,12 +32,12 @@ val using_opt : string -> 'a t -> 'a option t
 (* All operators are right-associative, with the exception of forward composition, which
    is an associative operation anyway anyway. *)
 
-(** Operator of [using] for path traversal: "foo" @. "bar" @. int.
+(** Operator of [using] for path traversal: ["foo" @. "bar" @. int].
     Raises for non-objects.
 *)
 val ( @. ) : string -> 'a t -> 'a t
 
-(** Operator of [using_opt] for path traversal with optional: "foo" @? "bar" @? int.
+(** Operator of [using_opt] for path traversal with optional: ["foo" @? "bar" @? int].
     Raises for non-objects.
 *)
 val ( @? ) : string -> 'a t -> 'a option t
@@ -57,11 +57,11 @@ val ( @? ) : string -> 'a t -> 'a option t
     explicit [Option.join] and a comment and some tests, because that's a crazy thing. *)
 val ( @?? ) : string -> 'a t -> 'a option t
 
-(** Suffix [map] for converting: "foo" @. int @> Satoshi.of_int *)
+(** Suffix [map] for converting: ["foo" @. int @> Satoshi.of_int] *)
 val ( @> ) : 'a t -> ('a -> 'b) -> 'b t
 
 
-(** Simple forward composition: int @> Foo.of_int >>> Bar.of_foo *)
+(** Simple forward composition: [int @> Foo.of_int >>> Bar.of_foo] *)
 val ( >>> ) : ('a -> 'b) -> ('b -> 'c) -> 'a -> 'c
 
 (** Simple accessors by type. Will raise if the type does not match *)
